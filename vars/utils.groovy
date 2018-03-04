@@ -33,7 +33,7 @@ def pyCommand(script, command) {
     String line = null;
     while ( (line = reader.readLine()) != null) {
         builder.append(line);
-        builder.append(System.getProperty("line.separator"));
+        // builder.append(System.getProperty("line.separator"));
     }
     String output = builder.toString();
     process.waitFor();
