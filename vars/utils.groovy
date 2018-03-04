@@ -22,7 +22,8 @@ def pyCommand(script, command) {
     // - redirect stderr to stdout so we can print a stack trace
     def process = new ProcessBuilder([ "C:/Python27/python.exe", "-u", fullPath ])
         .redirectErrorStream(true)
-        .start().waitFor();
+        .start()
+    process.waitFor();
     // // Read output into a string builder
     StringBuilder builder = new StringBuilder();
     process.inputStream.eachLine {
