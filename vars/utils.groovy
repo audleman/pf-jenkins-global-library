@@ -11,7 +11,7 @@ def pyCommand(script, command) {
 
     // Write string to a temp file in the workspace
     writeFile(file: "tmp.py", text: command)
-    // fullPath = env.WORKSPACE + "/tmp.py"
+    fullPath = env.WORKSPACE + "/tmp.py"
     return "ok"
     // fullPath = "c:/Program Files (x86)/Jenkins/workspace/test2/tmp.py"
 
