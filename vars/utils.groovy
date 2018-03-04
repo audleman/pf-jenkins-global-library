@@ -23,13 +23,20 @@ def pyCommand(script, command) {
     def process = new ProcessBuilder([ "C:/Python27/python.exe", "-u", fullPath ])
         .redirectErrorStream(true)
         .start()
-    // sleep(10)
-    // // Read output into a string builder
     StringBuilder builder = new StringBuilder();
-    process.inputStream.eachLine {
-        println it
+    BufferedReader br=new BufferedReader( new InputStreamReader( pROCESS.getInputStream()));
+    String line;
+    while((line=br.readLine())!=null){
+        System.out.println(line);
         builder.append(it)
     }
+    // sleep(10)
+    // // Read output into a string builder
+    // StringBuilder builder = new StringBuilder();
+    // process.inputStream.eachLine {
+    //     println it
+    //     builder.append(it)
+    // }
     
     // BufferedReader reader = 
     //     new BufferedReader(
