@@ -28,7 +28,7 @@ def pyCommand(script, command) {
         builder.append(System.getProperty("line.separator"));
     }
     process.waitFor();
-    // output = builder.toString()
+    output = builder.toString()
     if (process.exitValue() != 0){
         throw new Exception("ooh")
     }
