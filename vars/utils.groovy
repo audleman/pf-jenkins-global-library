@@ -22,12 +22,21 @@ def pyCommand(script, command) {
         .redirectErrorStream(true)
         .start()
     // // Read output into a string builder
+    // StringBuilder builder = new StringBuilder();
+    // process.inputStream.eachLine {
+    //     builder.append(it)
+    // }
+    BufferedReader reader = 
+        new BufferedReader(
+            new InputStreamReader(process.getInputStream()));
     StringBuilder builder = new StringBuilder();
-    process.inputStream.eachLine {
-        builder.append(it)
+    String line = null;
+    while ( (line = reader.readLine()) != null) {
+        builder.append(line);
+        builder.append(System.getProperty("line.separator"));
     }
+    String output = builder.toString();
     process.waitFor();
-    output = builder.toString()
     println "Process exited with ${process.exitValue()}: ${output}"
     if (process.exitValue() != 0){
         // throw new Exception()
