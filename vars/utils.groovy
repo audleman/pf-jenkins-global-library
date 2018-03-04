@@ -30,7 +30,7 @@ def pyCommand(script, command) {
     process.waitFor();
     output = builder.toString()
     if (process.exitValue() != 0){
-        throw new Exception("ooh")
+        throw new Exception(output)
     }
     // Success, return stdout
     return output 
