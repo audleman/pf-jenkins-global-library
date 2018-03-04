@@ -24,7 +24,7 @@ def pyCommand(script, command) {
         .redirectErrorStream(true)
         .start()
     StringBuilder builder = new StringBuilder();
-    BufferedReader br=new BufferedReader( new InputStreamReader( pROCESS.getInputStream()));
+    BufferedReader br=new BufferedReader( new InputStreamReader( process.getInputStream()));
     String line;
     while((line=br.readLine())!=null){
         System.out.println(line);
