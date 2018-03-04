@@ -12,7 +12,6 @@ def pyCommand(script, command) {
     // Write string to a temp file in the workspace
     writeFile(file: "tmp.py", text: command)
     fullPath = script.env.WORKSPACE + "/tmp.py"
-    return "ok"
     // fullPath = "c:/Program Files (x86)/Jenkins/workspace/test2/tmp.py"
 
     // Use the low-level process builder. This is so we can:
@@ -23,12 +22,12 @@ def pyCommand(script, command) {
         .redirectErrorStream(true)
         .start()
     // // Read output into a string builder
-    // StringBuilder builder = new StringBuilder();
-    // process.inputStream.eachLine {
-    //     builder.append(it)
-    //     builder.append(System.getProperty("line.separator"));
-    // }
-    // process.waitFor();
+    StringBuilder builder = new StringBuilder();
+    process.inputStream.eachLine {
+        builder.append(it)
+        builder.append(System.getProperty("line.separator"));
+    }
+    process.waitFor();
     // output = builder.toString()
     // if (process.exitValue() != 0){
     //     throw new Exception(output)
