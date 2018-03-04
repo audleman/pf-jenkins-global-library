@@ -24,6 +24,7 @@ def pyCommand(script, command) {
         .redirectErrorStream(true)
         .start()
     // sleep(10)
+    Thread.sleep(7000)
     // // Read output into a string builder
     StringBuilder builder = new StringBuilder();
     process.inputStream.eachLine {
