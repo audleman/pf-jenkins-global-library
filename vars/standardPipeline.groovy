@@ -7,12 +7,7 @@ def call(body) {
 
     node {
         // Clean workspace before doing anything
-        deleteDir()
-
         try {
-            stage ('Clone') {
-                checkout scm
-            }
             stage ('Build') {
                 sh "echo 'building ${config.projectName} ...'"
             }
