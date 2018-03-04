@@ -27,13 +27,13 @@ def pyCommand(script, command) {
     //     builder.append(it)
     //     builder.append(System.getProperty("line.separator"));
     // }
-    // process.waitFor();
+    process.waitFor();
     // output = builder.toString()
-    // if (process.exitValue() != 0){
-    //     throw new Exception(output)
-    // }
-    // // Success, return stdout
-    // return output 
+    if (process.exitValue() != 0){
+        throw new Exception(output)
+    }
+    // Success, return stdout
+    return "output soon" 
      
 }
 
