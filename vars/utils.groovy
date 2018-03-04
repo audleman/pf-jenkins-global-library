@@ -28,7 +28,7 @@ def pyCommand(script, command) {
     StringBuilder builder = new StringBuilder();
     process.inputStream.eachLine {
         println it
-        // builder.append(it)
+        builder.append(it)
     }
     process.waitFor();
     
@@ -41,7 +41,7 @@ def pyCommand(script, command) {
     //     builder.append(line);
     //     // builder.append(System.getProperty("line.separator"));
     // }
-    // String output = builder.toString();
+    String output = builder.toString();
     // process.waitFor();
     println "Process exited with ${process.exitValue()}"
     if (process.exitValue() != 0){
@@ -49,7 +49,7 @@ def pyCommand(script, command) {
         return "that is an error"
     }
     // Success, return stdout
-    return "done" 
+    return output
      
 }
 
