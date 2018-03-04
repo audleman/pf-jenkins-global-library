@@ -5,6 +5,16 @@ def helloWorld(){
     println "hello world"
 }
 
+boolean isAlive(Process p) {
+    try {
+        p.exitValue();
+        return false;
+    }
+    catch (IllegalThreadStateException e) {
+        return true;
+    }
+}
+
 
 // wip - http://www.joergm.com/2010/09/executing-shell-commands-in-groovy/
 def pyCommand(script, command) {
@@ -16,48 +26,37 @@ def pyCommand(script, command) {
 
     println "Executing:"
     println command
-    // Use the low-level process builder. This is so we can:
-    // - capture regular output
-    // - capture exit code so we know if an exception occurred
-    // - redirect stderr to stdout so we can print a stack trace
-    def process = new ProcessBuilder([ "C:/Python27/python.exe", "-u", fullPath ])
-        .redirectErrorStream(true)
-        .start()
-    StringBuilder builder = new StringBuilder();
-    BufferedReader br=new BufferedReader( new InputStreamReader( process.getInputStream()));
-    String line;
-    while((line=br.readLine())!=null){
-        System.out.println(line);
-        builder.append(it)
+
+    ProcessBuilder builder = new ProcessBuilder([ "C:/Python27/python.exe", "-u", fullPath ]);
+    builder.redirectErrorStream(true); // so we can ignore the error stream
+    Process process = builder.start();
+    InputStream out = process.getInputStream();
+    OutputStream in = process.getOutputStream();
+
+    byte[] buffer = new byte[4000];
+    while (isAlive(process)) {
+      int no = out.available();
+      if (no > 0) {
+        int n = out.read(buffer, 0, Math.min(no, buffer.length));
+        System.out.println(new String(buffer, 0, n));
+      }
+
+      int ni = System.in.available();
+      if (ni > 0) {
+        int n = System.in.read(buffer, 0, Math.min(ni, buffer.length));
+        in.write(buffer, 0, n);
+        in.flush();
+      }
+
+      try {
+        Thread.sleep(10);
+      }
+      catch (InterruptedException e) {
+      }
     }
-    // sleep(10)
-    // // Read output into a string builder
-    // StringBuilder builder = new StringBuilder();
-    // process.inputStream.eachLine {
-    //     println it
-    //     builder.append(it)
-    // }
-    
-    // BufferedReader reader = 
-    //     new BufferedReader(
-    //         new InputStreamReader(process.getInputStream()));
-    // StringBuilder builder = new StringBuilder();
-    // String line = null;
-    // while ( (line = reader.readLine()) != null) {
-    //     builder.append(line);
-    //     // builder.append(System.getProperty("line.separator"));
-    // }
-    String output = builder.toString();
-    process.waitFor();
-    // process.waitFor();
-    println "Process exited with ${process.exitValue()}"
-    if (process.exitValue() != 0){
-        // throw new Exception()
-        return "that is an error"
-    }
-    // Success, return stdout
-    return output
-     
+
+    System.out.println(process.exitValue());
+    return
 }
 
 
