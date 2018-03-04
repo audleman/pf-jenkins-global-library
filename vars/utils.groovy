@@ -14,6 +14,8 @@ def pyCommand(script, command) {
     fullPath = script.env.WORKSPACE + "/tmp.py"
     // fullPath = "c:/Program Files (x86)/Jenkins/workspace/test2/tmp.py"
 
+    println "Executing:"
+    println command
     // Use the low-level process builder. This is so we can:
     // - capture regular output
     // - capture exit code so we know if an exception occurred
