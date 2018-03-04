@@ -38,7 +38,7 @@ def pyCommand(script, command) {
     }
     String output = builder.toString();
     process.waitFor();
-    println "Process exited with ${process.exitValue()}: ${output}"
+    println "Process exited with ${process.exitValue()}, output: ${output}"
     if (process.exitValue() != 0){
         // throw new Exception()
         return "that is an error"
