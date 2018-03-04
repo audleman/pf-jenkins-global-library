@@ -22,11 +22,11 @@ def pyCommand(script, command) {
         .redirectErrorStream(true)
         .start()
     // // Read output into a string builder
-    // StringBuilder builder = new StringBuilder();
-    // process.inputStream.eachLine {
-    //     builder.append(it)
-    //     builder.append(System.getProperty("line.separator"));
-    // }
+    StringBuilder builder = new StringBuilder();
+    process.inputStream.eachLine {
+        builder.append(it)
+        builder.append(System.getProperty("line.separator"));
+    }
     process.waitFor();
     // output = builder.toString()
     if (process.exitValue() != 0){
