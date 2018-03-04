@@ -22,7 +22,7 @@ def pyCommand(script, command) {
     // - redirect stderr to stdout so we can print a stack trace
     def process = new ProcessBuilder([ "C:/Python27/python.exe", "-u", fullPath ])
         .redirectErrorStream(true)
-        .start()
+        .start().waitFor();
     // // Read output into a string builder
     StringBuilder builder = new StringBuilder();
     process.inputStream.eachLine {
@@ -40,7 +40,7 @@ def pyCommand(script, command) {
     //     // builder.append(System.getProperty("line.separator"));
     // }
     // String output = builder.toString();
-    process.waitFor();
+    // process.waitFor();
     println "Process exited with ${process.exitValue()}"
     if (process.exitValue() != 0){
         // throw new Exception()
