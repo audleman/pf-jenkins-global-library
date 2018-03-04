@@ -26,7 +26,7 @@ def pyCommand(script, command) {
     // process.inputStream.eachLine {
     //     builder.append(it)
     // }
-    process.waitFor();
+    // process.waitFor();
     BufferedReader reader = 
         new BufferedReader(
             new InputStreamReader(process.getInputStream()));
@@ -36,15 +36,15 @@ def pyCommand(script, command) {
         builder.append(line);
         // builder.append(System.getProperty("line.separator"));
     }
-    String output = builder.toString();
+    String outpuzt = builder.toString();
     
-    println "Process exited with ${process.exitValue()}: ${output}"
+    println "Process exited with ${process.exitValue()}: ${outpuzt}"
     if (process.exitValue() != 0){
         // throw new Exception()
         return "that is an error"
     }
     // Success, return stdout
-    return output 
+    return outpuzt 
      
 }
 
