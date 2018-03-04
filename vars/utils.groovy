@@ -19,9 +19,9 @@ def pyCommand(script, command) {
     // - capture regular output
     // - capture exit code so we know if an exception occurred
     // - redirect stderr to stdout so we can print a stack trace
-    // def process = new ProcessBuilder([ "C:/Python27/python.exe", "-u", fullPath ])
-    //     .redirectErrorStream(true)
-    //     .start()
+    def process = new ProcessBuilder([ "C:/Python27/python.exe", "-u", fullPath ])
+        .redirectErrorStream(true)
+        .start()
     // // Read output into a string builder
     // StringBuilder builder = new StringBuilder();
     // process.inputStream.eachLine {
