@@ -16,6 +16,8 @@ def parseJson(String json) {
 // wip - http://www.joergm.com/2010/09/executing-shell-commands-in-groovy/
 def pyCommand(String command, env) {
 
+    println "this works"
+    return
     // Write string to a temp file in the workspace
     writeFile(file: "tmp.py", text: command)
     fullPath = env.WORKSPACE + "/tmp.py"
