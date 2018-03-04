@@ -24,8 +24,7 @@ def pyCommand(script, command) {
     // // Read output into a string builder
     StringBuilder builder = new StringBuilder();
     process.inputStream.eachLine {
-        builder.append(it)
-        builder.append(System.getProperty("line.separator"));
+        builder.append(it + "\n")
     }
     process.waitFor();
     output = builder.toString()
