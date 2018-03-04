@@ -33,7 +33,7 @@ def pyCommand(script, command) {
         throw new Exception("ooh")
     }
     // Success, return stdout
-    return "output soon" 
+    return output 
      
 }
 
