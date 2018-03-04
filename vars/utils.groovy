@@ -23,7 +23,7 @@ def pyCommand(script, command) {
     def process = new ProcessBuilder([ "C:/Python27/python.exe", "-u", fullPath ])
         .redirectErrorStream(true)
         .start()
-    sleep(3000)
+    sleep(10)
     // // Read output into a string builder
     StringBuilder builder = new StringBuilder();
     process.inputStream.eachLine {
