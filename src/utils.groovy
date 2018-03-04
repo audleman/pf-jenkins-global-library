@@ -1,3 +1,5 @@
+package utils
+
 import groovy.json.JsonSlurper
 import groovy.json.JsonOutput
 
