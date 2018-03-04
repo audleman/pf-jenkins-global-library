@@ -3,7 +3,7 @@ import groovy.json.JsonOutput
 
 
 // wip - http://www.joergm.com/2010/09/executing-shell-commands-in-groovy/
-def pyCommand(command) {
+def pyCommand(String command) {
 
     println "this works"
     return
